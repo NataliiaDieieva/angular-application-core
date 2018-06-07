@@ -5,6 +5,7 @@ import { RootModule, UIRouterModule } from '@uirouter/angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 //
 import { LayoutComponent } from './layout.component';
+import { FooterComponent } from './footer/footer.component';
 // app states
 import { homeState } from './home/home.state';
 import { loginState } from './login/login.state';
@@ -34,6 +35,7 @@ export const routing: RootModule = {
     // define list of all page components
     declarations: [
         LayoutComponent,
+        FooterComponent,
         homeState.component,
         loginState.component,
     ],
