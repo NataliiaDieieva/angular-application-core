@@ -11,22 +11,21 @@
     .grey-bg { background-color: @grey; }
     .fff-bg { background-color: @white; }
     .brown-bg { background-color: @brown; }
-    .red-bg { background-color: @red; }
-    .green-bg { background-color: @green; }
+    .light-bg { background-color: @light-grey;}
 
     // text
     // -------------------------
     .black-text { color: @black; }
     .grey-text { color: @grey; }
     .fff-text { color: @white; }
-    .red-text { color: @red; }
-    .green-text { color: @green; }
+    .base-text { color: @text-color; }
 
     .text-nowrap { white-space: nowrap; }
     .text-no {
         text-decoration: line-through;
         text-decoration-color: red;
     }
+
     // ADDITION
     // ----------------------
     // fix toastr
@@ -38,7 +37,7 @@
     .md-datepicker-calendar-pane { z-index: 1101; }
     // select items fix for angular-material-time-picker
     .md-dialog-container { z-index: 1101; }
-    
+
     .ideal-img {
         width: 100%;
         display: block;
@@ -74,13 +73,13 @@
         }
         // .border-radius-low
         .radius( radius-low, @radius );
-        // .border-radius-midle
+        // .border-radius-middle
         .radius( radius-midle, @radius*2 );
         // .border-radius-huge
         .radius( radius-huge, @radius*3 );
     }
 
-    // ability to totate items
+    // ability to rotate items
     // .rotate-45
     .rotate-helper ( @deg ) { .rotate-@{deg} { .rotate(@deg+0deg); } }
     .rotate-helper(45);
