@@ -4,10 +4,9 @@ html {
     min-height: 100%;
     position: relative;
 
-    // temporary variables
-    @header-height: 100px;
+    //fixed header height for main section top padding due to avoid header overlay
+    @header-height: 148px;
     @footer-height: 120px;
-
 
     #layout {
         margin: 0;
@@ -16,10 +15,13 @@ html {
         position: relative;
 
         #header {
-            overflow: hidden;
-            // test props to separate page root components
-            background: red;
-            height: @header-height;
+            background-color: @white;
+            padding-top: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            border-bottom: 2px solid @black;
         }
 
         #main {
@@ -30,7 +32,12 @@ html {
             width: 100%;
             display: inline-block;
             // test props to separate page root components
-            min-height: ~'calc(100vh - '@header-height + @footer-height~')';
+            min-height: ~'calc(100vh - '@footer-height~')';
+            //add padding equal header height due to avoid header overlay
+            padding-top: @header-height;
+            @media ( max-width: @tablet-point ) {
+                padding-top: ceil(@header-height * 0.7);
+            }
         }
 
         #footer {

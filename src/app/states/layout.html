@@ -1,11 +1,5 @@
-<!-- Common header can be component => selector: '[id="header"]', -->
-<header id="header">
-    <h1> Header </h1>
-    <br/>
-    <a uiSref="home" uiSrefActive="active"> home </a>
-    <a uiSref="login" uiSrefActive="active"> login </a>
-    <br/>
-</header>
+<!-- Header is separate component. Selector: '[id="header"]', -->
+<header id="header"></header>
 
 <!-- place to render page content based on url -->
 <ui-view id="main">
