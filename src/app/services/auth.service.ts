@@ -101,7 +101,14 @@ export class AuthService {
      * @public
      */
     restoreSession () {
-        const session = JSON.parse(localStorage.getItem('auth'));
+        // JSON.parse error handling
+        let session;
+        try {
+            session = JSON.parse(localStorage.getItem('auth'));
+        } catch (e) {
+            session = null;
+            localStorage.removeItem('auth');
+        }
         if ( session !== null ) {
             const expired = new Date( session['expired']);
             if ( expired > new Date() ) {

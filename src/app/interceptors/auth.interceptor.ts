@@ -10,10 +10,17 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/c
 export class AuthInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if ( localStorage.getItem('auth') !== null ) {
-            const auth = JSON.parse(localStorage.getItem('auth'))['token'];
+            // JSON.parse error handling
+            let auth;
+            try {
+                auth = JSON.parse(localStorage.getItem('auth'));
+            } catch (e) {
+                auth = null;
+                return next.handle(request);
+            }
             request = request.clone({
                 setHeaders: {
-                    Authorization: auth
+                    Authorization: auth['token']
                 }
             });
         }
