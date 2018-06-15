@@ -4,7 +4,10 @@ import { CommonModule } from '@angular/common';
 import { RootModule, UIRouterModule } from '@uirouter/angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
-//
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+// app components
 import { LayoutComponent } from './layout.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -12,8 +15,10 @@ import { AuthModal } from './auth-modal/auth-modal';
 // app states
 import { homeState } from './home/home.state';
 import { loginState } from './login/login.state';
-// app directives
+// app directives, services, interceptors
 import { ResizeOnScrollDirective } from '../directives/resizeOnScroll.directive';
+import { AuthService } from '../services/auth.service';
+import { AuthInterceptor } from '../interceptors/auth.interceptor';
 
 /**
  * define all pages within application
@@ -50,12 +55,23 @@ export const routing: RootModule = {
     imports: [
         CommonModule,
         FormsModule,
+        HttpClientModule,
+        ToastrModule.forRoot(),
+        NgbModule.forRoot(),
         UIRouterModule.forRoot(routing),
-        NgbModule.forRoot()
+        BrowserAnimationsModule
     ],
     // define outgoing modules
     exports: [
         UIRouterModule
+    ],
+    providers: [
+        AuthService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
+        }
     ],
     entryComponents: [AuthModal],
 })

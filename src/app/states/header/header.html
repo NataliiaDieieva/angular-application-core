@@ -29,9 +29,29 @@
                     <a
                         href="javascript:void(0);"
                         class="nav-link border-right"
-                        (click)="vm.openAuthModal()"
+                        *ngIf = "user"
                             >
-                        Sign in
+                        Hi, {{ user.firstName }}!
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a
+                        href="javascript:void(0);"
+                        class="nav-link border-right"
+                        (click)="vm.openAuthModal()"
+                        *ngIf = "!user"
+                            >
+                        Log in
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a
+                        href="javascript:void(0);"
+                        class="nav-link border-right"
+                        (click)="logOut()"
+                        *ngIf = "user"
+                            >
+                        Log out
                     </a>
                 </li>
                 <li class="nav-item">

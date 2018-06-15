@@ -1,6 +1,7 @@
-import {Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
     selector: 'auth-modal',
@@ -16,15 +17,15 @@ export class AuthModal {
         auth: {
             email: '',
             password: ''
-        }
+        },
     };
 
-    constructor(public activeModal: NgbActiveModal) {
+    constructor( public activeModal: NgbActiveModal, private authService: AuthService ) {
 
     }
 
-    signIn( credentials ) {
-        console.log(credentials);
+    logIn( credentials ) {
+        this.authService.logIn( credentials );
+        this.activeModal.close();
     }
-
 }

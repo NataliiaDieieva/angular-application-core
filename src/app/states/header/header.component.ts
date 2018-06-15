@@ -2,13 +2,15 @@
 import { Component, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthModal } from '../auth-modal/auth-modal';
-
+import { AuthService } from '../../services/auth.service';
+import { User } from '../../models/user.model';
 
 @Component({
     selector: '[id="header"]',
     templateUrl: './header.html',
 })
 export class HeaderComponent {
+    @Input() user: User;
     /**
      * using vm to define public data of the page
      * and delegate prepared properties
@@ -25,7 +27,11 @@ export class HeaderComponent {
      *
      *
      */
-    constructor ( private modalService: NgbModal ) {}
+    constructor ( private modalService: NgbModal, private authService: AuthService ) {}
+
+    logOut() {
+        this.authService.logOut();
+    }
 
     /**
      * Opens authentication modal window
@@ -33,7 +39,6 @@ export class HeaderComponent {
      * and created backdrop element which doesn't close the modal on click
      */
    openAuthModal () {
-       this.modalService.open( AuthModal, {backdrop: 'static'});
-    }
-
+        this.modalService.open(AuthModal, {backdrop: 'static'});
+   }
 };
